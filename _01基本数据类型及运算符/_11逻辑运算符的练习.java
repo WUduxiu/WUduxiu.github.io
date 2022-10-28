@@ -1,17 +1,17 @@
-package _01»ù±¾Êý¾ÝÀàÐÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»åž‹åŠè¿ç®—ç¬¦;
 
-public class _11Âß¼­ÔËËã·ûµÄÁ·Ï° {
-//¶ÌÂ·Óë ºÍ¶ÌÂ·»ò¶¼ÊÇÏÈ¿´µÚÒ»¸öÌõ¼þ
+public class _11é€»è¾‘è¿ç®—ç¬¦çš„ç»ƒä¹  {
+//çŸ­è·¯ä¸Ž å’ŒçŸ­è·¯æˆ–éƒ½æ˜¯å…ˆçœ‹ç¬¬ä¸€ä¸ªæ¡ä»¶
 	/*
-	 * ¶ÌÂ·Óë µÚÒ»¸öÌõ¼þÎª¼ÙÔòÈ«Îª¼Ù µÚ¶þ¸öÌõ¼þ²»ÅÐ¶Ï--µÚÒ»¸öÌõ¼þÎªÕæÊ± »á¼ÌÐøÅÐ¶ÏµÚ¶þ¸öÌõ¼þ
-	 * ¶ÌÂ·»ò µÚÒ»¸öÌõ¼þÎªÕæÊÇÔòÈ«ÎªÕæ µÚ¶þ¸öÌõ¼þ²»ÅÐ¶Ï--µÚÒ»¸öÌõ¼þÎª¼ÙÊ± »á¼ÌÐøÅÐ¶ÏµÚ¶þ¸öÌõ¼þ
+	 * çŸ­è·¯ä¸Ž ç¬¬ä¸€ä¸ªæ¡ä»¶ä¸ºå‡åˆ™å…¨ä¸ºå‡ ç¬¬äºŒä¸ªæ¡ä»¶ä¸åˆ¤æ–­--ç¬¬ä¸€ä¸ªæ¡ä»¶ä¸ºçœŸæ—¶ ä¼šç»§ç»­åˆ¤æ–­ç¬¬äºŒä¸ªæ¡ä»¶
+	 * çŸ­è·¯æˆ– ç¬¬ä¸€ä¸ªæ¡ä»¶ä¸ºçœŸæ˜¯åˆ™å…¨ä¸ºçœŸ ç¬¬äºŒä¸ªæ¡ä»¶ä¸åˆ¤æ–­--ç¬¬ä¸€ä¸ªæ¡ä»¶ä¸ºå‡æ—¶ ä¼šç»§ç»­åˆ¤æ–­ç¬¬äºŒä¸ªæ¡ä»¶
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int x = 5;
 		int y = 5;
 		if(x++==5 & ++y==6) {
-			//x++ÏÈ¸³ÖµÔÙ×ÔÔö Ïàµ±ÓÚÊÇÏÈ±È½Ï ËùÒÔ x++==6Ìõ¼þÎª¼Ù
+			//x++å…ˆèµ‹å€¼å†è‡ªå¢ž ç›¸å½“äºŽæ˜¯å…ˆæ¯”è¾ƒ æ‰€ä»¥ x++==6æ¡ä»¶ä¸ºå‡
 			x=11;
 		}
 		System.out.println("x="+x+"y="+y);

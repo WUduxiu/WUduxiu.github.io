@@ -1,6 +1,6 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _04×Ö·û´®µÄÊ¹ÓÃ {
+public class _04å­—ç¬¦ä¸²çš„ä½¿ç”¨ {
 	public static void  main (String[]args) {
 		char n = '\n';
 		char n1 = '\t';
@@ -15,20 +15,20 @@ public class _04×Ö·û´®µÄÊ¹ÓÃ {
 		System.out.println("n4"+n4);
 		System.out.println("n5"+n5);
 		System.out.println("-----------");
-		String book1 = "ÓïÎÄ";
-		String book2 ="ÊıÑ§";
-		System.out.println("ÊéÃûÊÇ"+book1+"ºÍ"+book2);
+		String book1 = "è¯­æ–‡";
+		String book2 ="æ•°å­¦";
+		System.out.println("ä¹¦åæ˜¯"+book1+"å’Œ"+book2);
 		System.out.println("-------");
-		String name ="ÕÅÈı";
+		String name ="å¼ ä¸‰";
 		int age = 21;
 		double sorce = 88.88;
-		char gender = 'ÄĞ';
-		//char ºÍstring µÄÇø±ğ
-		//charÖ»ÄÜ´¢´æÒ»¸ö×Ö·û string¿ÉÒÔ´¢´æ¶à¸ö×Ö·û
-		String hobby = "´òÇò";
-		System.out.println("ĞÕÃû\tÄêÁä\t³É¼¨\tĞÔ±ğ\t°®ºÃ\n"+name+"\t"+age+"\t"+sorce+"\t"+gender+"\t"+hobby);
+		char gender = 'ç”·';
+		//char å’Œstring çš„åŒºåˆ«
+		//charåªèƒ½å‚¨å­˜ä¸€ä¸ªå­—ç¬¦ stringå¯ä»¥å‚¨å­˜å¤šä¸ªå­—ç¬¦
+		String hobby = "æ‰“çƒ";
+		System.out.println("å§“å\tå¹´é¾„\tæˆç»©\tæ€§åˆ«\tçˆ±å¥½\n"+name+"\t"+age+"\t"+sorce+"\t"+gender+"\t"+hobby);
 		System.out.println(gender+""+age);
-		//charÀàĞÍÓÃ+Ö±½ÓÁ¬½Ó»á×ª»»³ÉintĞÍ
+		//charç±»å‹ç”¨+ç›´æ¥è¿æ¥ä¼šè½¬æ¢æˆintå‹
 		System.out.println(gender+age);
 		System.out.println(name+age);
 	}

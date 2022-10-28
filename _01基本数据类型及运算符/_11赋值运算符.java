@@ -1,17 +1,17 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _11¸³ÖµÔËËã·û {
+public class _11èµ‹å€¼è¿ç®—ç¬¦ {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int n =10;
-		n+=4;//n+=4 Ïàµ±ÓÚ n=n+4
+		n+=4;//n+=4 ç›¸å½“äº n=n+4
 		System.out.println("n="+n);
 		System.out.println("------");
 		byte b = 1;
-		b+=5;//b=b+5 byteÔÚ¼ÆËãÊ±×Ô¶¯×ª»»³ÉintĞÍ µ«ÊÇÔÚ¸³ÖµÔËËãÊ±ÓĞ 
-		//b=(byte)(b+5)×Ô¶¯½øĞĞÁËÇ¿×ª ×ªÎªbyteÀàĞÍ
-		b++;//b=(byte)(b+1) b++Í¬Àí
+		b+=5;//b=b+5 byteåœ¨è®¡ç®—æ—¶è‡ªåŠ¨è½¬æ¢æˆintå‹ ä½†æ˜¯åœ¨èµ‹å€¼è¿ç®—æ—¶æœ‰ 
+		//b=(byte)(b+5)è‡ªåŠ¨è¿›è¡Œäº†å¼ºè½¬ è½¬ä¸ºbyteç±»å‹
+		b++;//b=(byte)(b+1) b++åŒç†
 		System.out.println("b="+b);
 	}
 

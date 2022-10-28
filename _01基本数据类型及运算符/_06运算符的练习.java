@@ -1,19 +1,19 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _06ÔËËã·ûµÄÁ·Ï° {
+public class _06è¿ç®—ç¬¦çš„ç»ƒä¹  {
 	public static void main(String[]args) {
 		int a =59;
 		int b =7;
 		int c =(a-(a%b))/b;
 		int d =a%b;
-		System.out.println("ºÏ"+c+"¸öĞÇÆÚÁã"+d+"Ìì");
+		System.out.println("åˆ"+c+"ä¸ªæ˜ŸæœŸé›¶"+d+"å¤©");
 		
 		double m =5;
 		double n = 9;
 		double h =234.5;
 		double s = m/n*(h-100);
 		System.out.println(s);
-		System.out.println(5/10*10);//5/10=0.5 ÎªintÀàĞÍ×ª»»³ÉdoubleÀàĞÍÎª0£»0*10=0 ËùÒÔÊä³ö½á¹ûÎª0
+		System.out.println(5/10*10);//5/10=0.5 ä¸ºintç±»å‹è½¬æ¢æˆdoubleç±»å‹ä¸º0ï¼›0*10=0 æ‰€ä»¥è¾“å‡ºç»“æœä¸º0
 		
 		
 		

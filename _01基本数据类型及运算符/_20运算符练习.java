@@ -1,6 +1,6 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _20ÔËËã·ûÁ·Ï° {
+public class _20è¿ç®—ç¬¦ç»ƒä¹  {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -9,23 +9,23 @@ public class _20ÔËËã·ûÁ·Ï° {
 		System.out.println(10/5);
 		System.out.println(10%2);
 		System.out.println(-10.5%3);
-		//a%b µ±aÎªĞ¡ÊıÊ±£¬¹«Ê½Îª = a-(int)a/b*b
+		//a%b å½“aä¸ºå°æ•°æ—¶ï¼Œå…¬å¼ä¸º = a-(int)a/b*b
 		//-10.5-(int)-10.5/3*3=-10.5-(-10)/3*3=-10.5-(-9)=-1.5
-		//ÓĞĞ¡Êı²ÎÓëµÄ¼ÆËãµÃµ½µÄ½á¹ûÊÇ½üËÆÖµ
+		//æœ‰å°æ•°å‚ä¸çš„è®¡ç®—å¾—åˆ°çš„ç»“æœæ˜¯è¿‘ä¼¼å€¼
 		int i = 66;
-		System.out.println(++i+i);//ÏÈ×ÔÔöºó¸³Öµ =67+67=134
+		System.out.println(++i+i);//å…ˆè‡ªå¢åèµ‹å€¼ =67+67=134
 		int num1 = Integer.parseInt("18");//int num1 = "18";
-		//intÀà×ªStringÀàĞèÒªÓÃ°ü×°µÄ·½·¨ ¼´Integer.parseInt("")
+		//intç±»è½¬Stringç±»éœ€è¦ç”¨åŒ…è£…çš„æ–¹æ³• å³Integer.parseInt("")
 		int num2 = (int)18.0; // int num2 = 18.0;
-		//18.0ÎªdoubleÀà²»ÄÜ×ªÎªintÀà
-		double num3 = 3d;//ÕıÈ·
-		//3dÏàµ±ÓÚ 3double
-		double num4 = 8;//ÕıÈ·
-		//8ÎªintÀà¿ÉÒÔ×ª³ÉdoubleÀà
+		//18.0ä¸ºdoubleç±»ä¸èƒ½è½¬ä¸ºintç±»
+		double num3 = 3d;//æ­£ç¡®
+		//3dç›¸å½“äº 3double
+		double num4 = 8;//æ­£ç¡®
+		//8ä¸ºintç±»å¯ä»¥è½¬æˆdoubleç±»
 		int c = 48; char ch = (char)+(c+1);//int c = 48; char ch = c+1;
-		//c+1´ËÊ±ÒÑ¾­ÎªintÀàĞÍ ĞèÒªÇ¿×ª
+		//c+1æ­¤æ—¶å·²ç»ä¸ºintç±»å‹ éœ€è¦å¼ºè½¬
 		byte b =19; short s = (short)(b+2);//byte b =19; short s = b+2;
-		//b+2´ËÊ±ÒÑ¾­ÎªintÀàĞÍ ĞèÒªÇ¿×ª
+		//b+2æ­¤æ—¶å·²ç»ä¸ºintç±»å‹ éœ€è¦å¼ºè½¬
 		
 		
 		

@@ -1,14 +1,14 @@
-package _01»ù±¾Êý¾ÝÀàÐÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»åž‹åŠè¿ç®—ç¬¦;
 
-public class _12ÈýÔªÔËËã·û {
+public class _12ä¸‰å…ƒè¿ç®—ç¬¦ {
 
 	public static void main(String[] args) {
 		// 
 		int a = 10;
 		int b = 100;
-		int result = a>b ? a++ : b--;//ÈôÌõ¼þÎªÕæÔòÖ´ÐÐµÚÒ»¸ö  Îª¼ÙÖ´ÐÐµÚ¶þ¸ö£¨Ò»Õæ´óÊ¦£©
-		System.out.println("result="+result);//100 ÒòÎªb--ÊÇÏÈ¸³Öµºó×Ô¼õ
-		//ËùÒÔ»áÏÈ½« b=100´«¸øresult 
+		int result = a>b ? a++ : b--;//è‹¥æ¡ä»¶ä¸ºçœŸåˆ™æ‰§è¡Œç¬¬ä¸€ä¸ª  ä¸ºå‡æ‰§è¡Œç¬¬äºŒä¸ªï¼ˆä¸€çœŸå¤§å¸ˆï¼‰
+		System.out.println("result="+result);//100 å› ä¸ºb--æ˜¯å…ˆèµ‹å€¼åŽè‡ªå‡
+		//æ‰€ä»¥ä¼šå…ˆå°† b=100ä¼ ç»™result 
 		System.out.println("a="+a);//10
 		System.out.println("b="+b);//99
 		System.out.println("--------");
@@ -23,7 +23,7 @@ public class _12ÈýÔªÔËËã·û {
 		int n3 = 41;
 		int t1 = n1>n2 ? n1 : n2;
 		int t2 = t1>n3 ? t1 : n3;
-		System.out.println("×î´óÖµÎª"+t2);
+		System.out.println("æœ€å¤§å€¼ä¸º"+t2);
 		int q =10;
 		int p =5;
 		if(2<1) {

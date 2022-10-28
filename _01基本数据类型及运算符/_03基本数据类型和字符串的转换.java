@@ -1,18 +1,18 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _03»ù±¾Êı¾İÀàĞÍºÍ×Ö·û´®µÄ×ª»» {
+public class _03åŸºæœ¬æ•°æ®ç±»å‹å’Œå­—ç¬¦ä¸²çš„è½¬æ¢ {
 	public static void main (String[]args) {
 		int n1 =100;
 		float f1 =102.3f;
 		double d1 = 2.2;
 		boolean b1 = true;
-		char c1 = 'Îâ';
-		String s1 = n1+"Ò»";
-		String s2 = f1+"¶ş";
-		String s3 = d1+"Èı";
-		String s4 = b1+"ËÄ";
-		String s = c1 + "Îå";
-		System.out.println(s+"¿Õ¸ñ");
+		char c1 = 'å´';
+		String s1 = n1+"ä¸€";
+		String s2 = f1+"äºŒ";
+		String s3 = d1+"ä¸‰";
+		String s4 = b1+"å››";
+		String s = c1 + "äº”";
+		System.out.println(s+"ç©ºæ ¼");
 		System.out.println("-------");
 		String s5 ="3.14";
 		String s6 ="3";	

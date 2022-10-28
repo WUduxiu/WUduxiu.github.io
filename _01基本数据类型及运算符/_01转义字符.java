@@ -1,19 +1,19 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _01×ªÒå×Ö·û {
+public class _01è½¬ä¹‰å­—ç¬¦ {
 
 	public static void main(String[] args) {
-		// ×ªÒå×Ö·û
-//		\t  ×Ô¶¯¶ÔÆë Ò²ÓĞ¿Õ¸ñµÄĞ§¹û
-		System.out.println("ºÃ¼Ò»ï");
-		System.out.println("ºÃ\t¼Ò\t»ï");
-//		\n  »»ĞĞ
-//		\\  Ò»¸ö \
-//		\"  Ò»¸ö"
-//		\'  Ò»¸ö'
-//		\r  »Ø³µ		
+		// è½¬ä¹‰å­—ç¬¦
+//		\t  è‡ªåŠ¨å¯¹é½ ä¹Ÿæœ‰ç©ºæ ¼çš„æ•ˆæœ
+		System.out.println("å¥½å®¶ä¼™");
+		System.out.println("å¥½\tå®¶\tä¼™");
+//		\n  æ¢è¡Œ
+//		\\  ä¸€ä¸ª \
+//		\"  ä¸€ä¸ª"
+//		\'  ä¸€ä¸ª'
+//		\r  å›è½¦		
 		System.out.println("\"123\"");
-//		\n ºÍ\r²»Í¬
+//		\n å’Œ\rä¸åŒ
 		System.out.println("a b c\t\n1 2 3");
 		System.out.println("q\tw\te\tr\n1\t2\t3\t4");
 		

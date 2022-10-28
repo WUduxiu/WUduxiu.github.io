@@ -1,15 +1,15 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 import java.util.*;
 
-public class _13¼üÅÌÊäÈëÓï¾ä {
+public class _13é”®ç›˜è¾“å…¥è¯­å¥ {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner(System.in);//scanner ÎªÃû×Ö
-		System.out.println("ÇëÊäÈëĞÕÃû");
-		String name = scanner.next();////scanner ÎªÃû×Ö
-		//nextºóÃæ¿ÉÒÔ¼ÓÉÏ×Ô¼ºÊ¹ÓÃµÄÊı¾İÀàĞÍ Èç£ºnextInt()´ËÊ±ÎªintÀàĞÍ
-		System.out.println("ĞÕÃû="+name);
+		Scanner scanner = new Scanner(System.in);//scanner ä¸ºåå­—
+		System.out.println("è¯·è¾“å…¥å§“å");
+		String name = scanner.next();////scanner ä¸ºåå­—
+		//nextåé¢å¯ä»¥åŠ ä¸Šè‡ªå·±ä½¿ç”¨çš„æ•°æ®ç±»å‹ å¦‚ï¼šnextInt()æ­¤æ—¶ä¸ºintç±»å‹
+		System.out.println("å§“å="+name);
 	}
 
 }

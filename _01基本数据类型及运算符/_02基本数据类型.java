@@ -1,34 +1,34 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _02»ù±¾Êı¾İÀàĞÍ {
+public class _02åŸºæœ¬æ•°æ®ç±»å‹ {
 	public static void main(String[]args) {
-		/*Êı¾İÀàĞÍ×ª»»Ä¬ÈÏ´ÓĞ¡Öµ×ª»»µ½´óÖµ
+		/*æ•°æ®ç±»å‹è½¬æ¢é»˜è®¤ä»å°å€¼è½¬æ¢åˆ°å¤§å€¼
 		 * 
 		 * char-int-long-float-double
 		 * byte-short-int-long-float-double
-		 * µ¥ÒıºÅ''ÀïÃæÊÇcharÀàĞÍ
-		 * Ë«ÒıºÅ""ÀïÃæÊÇ×Ö·û×ª String
-		 * char short byteÕâÈıÖÖÀàĞÍ²»ÄÜ»¥Ïà×Ô¶¯×ª»»
-		 * char short byteÈıÖÖÀàĞÍ²ÎÓë¼ÆËã  Ê×ÏÈ×ª»»ÎªintÀàĞÍ
+		 * å•å¼•å·''é‡Œé¢æ˜¯charç±»å‹
+		 * åŒå¼•å·""é‡Œé¢æ˜¯å­—ç¬¦è½¬ String
+		 * char short byteè¿™ä¸‰ç§ç±»å‹ä¸èƒ½äº’ç›¸è‡ªåŠ¨è½¬æ¢
+		 * char short byteä¸‰ç§ç±»å‹å‚ä¸è®¡ç®—  é¦–å…ˆè½¬æ¢ä¸ºintç±»å‹
 		 * byte b1 =1;
 		 * byte b2=1;
-		 * byte = b1+b2;´íÎó£ºÒòÎª b1+b2ÒÑ¾­±»×ª»»³ÉintÀàĞÍ intÀàĞÍ²»ÄÜ×ª³É³ÉbyteÀàĞÍ
+		 * byte = b1+b2;é”™è¯¯ï¼šå› ä¸º b1+b2å·²ç»è¢«è½¬æ¢æˆintç±»å‹ intç±»å‹ä¸èƒ½è½¬æˆæˆbyteç±»å‹
 		 * 
 		 * 
 		 */		
 		int num = 'a';
-		//aÊÇcharÀàĞÍ char¿ÉÒÔ×ª³Éint
+		//aæ˜¯charç±»å‹ charå¯ä»¥è½¬æˆint
 		double b =80;
-		String name ="ÕÅÈı";
-		//80ÊÇintĞÍ ¿ÉÒÔ×ª»»³É double
+		String name ="å¼ ä¸‰";
+		//80æ˜¯intå‹ å¯ä»¥è½¬æ¢æˆ double
 		System.out.println(num);
 		System.out.println(b);
-		System.out.println("Ãû×ÖÊÇ"+name);
+		System.out.println("åå­—æ˜¯"+name);
 		System.out.println("----------");
 		int a1 =1;
 		float c = 1+1.1f;
 		byte n1 =10;
-		//char n2 =n1; ´ËÊ±ÄãµÄn1ÒÑ¾­ÊÇbyteÀàĞÍ byteÓëcharÀàĞÍ²»ÄÜ×Ô¶¯»¥Ïà×ª»»
+		//char n2 =n1; æ­¤æ—¶ä½ çš„n1å·²ç»æ˜¯byteç±»å‹ byteä¸charç±»å‹ä¸èƒ½è‡ªåŠ¨äº’ç›¸è½¬æ¢
 		System.out.println(c);
 		System.out.println(n1);
 		System.out.println("---------");

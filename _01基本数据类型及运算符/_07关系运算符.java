@@ -1,7 +1,7 @@
-package _01»ù±¾Êı¾İÀàĞÍ¼°ÔËËã·û;
+package _01åŸºæœ¬æ•°æ®ç±»å‹åŠè¿ç®—ç¬¦;
 
-public class _07¹ØÏµÔËËã·û {
-	//¹ØÏµÔËËã·ûµÄ½á¹û¶¼ÊÇbooleanÖµ ÒªÃ´Îªtrue ÒªÃ´Îªfalse
+public class _07å…³ç³»è¿ç®—ç¬¦ {
+	//å…³ç³»è¿ç®—ç¬¦çš„ç»“æœéƒ½æ˜¯booleanå€¼ è¦ä¹ˆä¸ºtrue è¦ä¹ˆä¸ºfalse
 	public static void main(String[]args) {
 		int a =1;
 		int b =2;
