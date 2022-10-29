@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/_01鍩烘湰鏁版嵁绫诲瀷鍙婅繍绠楃" isTestSource="false" packagePrefix="_01" />
+      <sourceFolder url="file://$MODULE_DIR$/_02鎺у埗鍒ゆ柇璇彞" isTestSource="false" packagePrefix="_02" />
+      <sourceFolder url="file://$MODULE_DIR$/_03鏁扮粍" isTestSource="false" packagePrefix="_03" />
+      <sourceFolder url="file://$MODULE_DIR$/_04闈㈠悜瀵硅薄缂栫▼" isTestSource="false" packagePrefix="_04" />
+      <sourceFolder url="file://$MODULE_DIR$/_07鏂规硶缁冧範" isTestSource="false" packagePrefix="_07" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
