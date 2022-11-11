@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 这是Spring的配置文件模板-->
+    <!-- 这个文件最好是放在类路径当中，方便后期的移植-->
+    <!--放在resources根目录下，就像当于放到了类的根路径下 -->
+    <!--配置bean，这样spring才可以帮我们管理这个对象 -->
+    <!--
+        bean标签的两个重要属性
+        id：是这个bean的身份证号码，不能重复，是唯一的标识
+        否则抛出异常：org.springframework.beans.factory.parsing.BeanDefinitionParsingException
+        class：必须填写类的全路径，全限定类名（带包名的类名）
+    -->
+    <bean id="user1Bean" class="com.bjpowernode.spring6.bean.User1"/>
+<!--    <bean id="userBean" class="com.bjpowernode.spring6.bean.User1"/>-->
+    <!-- 配置其他bean -->
+<!--    <bean id="userDaoBean" class="com.bjpowernode.spring6.dao.UserDaoImplForMySQL"/>-->
+</beans>
