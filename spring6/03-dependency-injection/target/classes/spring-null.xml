@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="nullBean" class="com.bjpowernode.spring6.bean.SetNull">
+        <!-- 不给属性注入，属性的默认值就是null -->
+<!--        <property name="name" value=""/>  -->
+        <property name="name">
+            <null/> <!-- 手动给属性注入null-->
+        </property>
+        <!-- 给属性注入空字符串
+            <property name="hobby" value=""/>
+            -->
+        <property name="hobby">
+            <value/>   <!-- 手动注入空字符串 -->
+        </property>
+
+    </bean>
+</beans>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--定义Bean  -->
+    <bean id="orderDaoBean" class="com.bjpowernode.spring6.dao.OrderDao"></bean>
+        <!-- 注入外部bean -->
+    <bean id="orderServiceBean" class="com.bjpowernode.spring6.service.OrderService">
+        <!-- 使用ref属性来引入。这就是注入外部bean -->
+        <property name="orderDao" ref="orderDaoBean"/>
+    </bean>
+            <!-- 注入内部bean -->
+    <bean id="orderServiceBean2" class="com.bjpowernode.spring6.service.OrderService">
+        <property name="orderDao">
+                    <!-- 在property标签中 使用嵌套的bean标签就注入内部bean
+                          注入内部bean 不需要写id属性 -->
+            <bean class="com.bjpowernode.spring6.dao.OrderDao"/>
+        </property>
+    </bean>
+        <!-- set方法注入简单类型 -->
+    <bean id="userBean" class="com.bjpowernode.spring6.bean.User">
+            <!-- 简单类型的set注入 唯一的区别就是 在value中取值 -->
+        <property name="age" value="20"/>
+        <property name="name" value="张三"/>
+        <property name="password" value="123456"/>
+    </bean>
+        <!--测试那些类型是简单类型 -->
+    <bean id="svtBean" class="com.bjpowernode.spring6.bean.SimpleValueType">
+        <property name="age" value="20"/>
+        <property name="age2" value="22"/>
+        <property name="c" value="男"/>
+        <property name="c2" value="女"/>
+        <property name="clazz" value="java.lang.String"/>
+        <property name="season" value="SPRING"/>
+        <property name="username" value="张三"/>
+        <property name="flag" value="false"/>
+        <property name="flag2" value="true"/>
+            <!--
+                ”2002-1-13“被当成了普通字符串，无法转换成java.util.Date类型
+                如果硬要将Date当作简单类型的话，使用 value赋值的话，这个日期字符串格式有要求
+                在实际发开中，我们一般不会把Date类型的数据当作简单类型，虽然它是简单类型，但是一般采用ref给Date属性赋值
+            -->
+        <property name="birth" value="Fri Oct 28 21:21:16 CST 2022"/>
+    </bean>
+        <!-- 使用ref给Date属性赋值 -->
+    <bean id="serviceDateBean" class="com.bjpowernode.spring6.service.DateService">
+        <property name="dateBean">
+            <bean class="com.bjpowernode.spring6.bean.DateBean"/>
+        </property>
+    </bean>
+</beans>

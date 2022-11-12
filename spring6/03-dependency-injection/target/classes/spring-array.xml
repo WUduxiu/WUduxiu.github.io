@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="g1" class="com.bjpowernode.spring6.bean.Girls">
+        <property name="name" value="女友A"/>
+    </bean>
+    <bean id="g2" class="com.bjpowernode.spring6.bean.Girls">
+        <property name="name" value="女友B"/>
+    </bean>
+    <bean id="g3" class="com.bjpowernode.spring6.bean.Girls">
+        <property name="name" value="女友C"/>
+    </bean>
+    <bean id="jackBean" class="com.bjpowernode.spring6.bean.Jack">
+                <!-- 属性是数组 并且数组的类型是简单类型就使用value赋值 -->
+        <property name="hobbies">
+            <array>
+                <value>吃饭</value>
+                <value>睡觉</value>
+                <value>看小说</value>
+            </array>
+        </property>
+             <!-- 属性是数组 如果数组的类型不是是简单类型就使用ref赋值 -->
+        <property name="girls">
+            <array>
+                <ref bean="g1"/>
+                <ref bean="g2"/>
+                <ref bean="g3"/>
+            </array>
+        </property>
+    </bean>
+</beans>

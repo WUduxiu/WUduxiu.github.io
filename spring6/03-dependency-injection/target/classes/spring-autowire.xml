@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--
+                普通的set注入
+    <bean id="orderDaoBean" class="com.bjpowernode.spring6.dao.OrderDao"></bean>
+    <bean id="orderServiceBean" class="com.bjpowernode.spring6.service.OrderService">
+        <property name="orderDao" ref="orderDaoBean"/>
+    </bean>
+         -->
+                <!-- 根据名字进行自动装配，自动装配也是基于set注入的方式实现的-->
+            <!-- 根据名字进行自动装配的时候，被注入的bean的id不能随便写
+                  set方法的名字去掉set 剩下的单词首字母小写后面的不变
+                  <property name="orderDao" ref="orderDaoBean"/>  和这种取名方法类似
+                -->
+    <bean id="orderDao" class="com.bjpowernode.spring6.dao.OrderDao"/>
+    <bean id="orderService" class="com.bjpowernode.spring6.service.OrderService" autowire="byName"/>
+                    <!-- 根据类型进行自动装配 -->
+                    <!--自动装配是基于set方法的-->
+                    <!-- 根据类型进行自动装配的时候，在有效的配置文件，某种类型的实例只能有一个-->
+    <bean class="com.bjpowernode.spring6.dao.UserDao"/>
+    <bean class="com.bjpowernode.spring6.dao.VipDao"/>
+    <bean id="csService" class="com.bjpowernode.spring6.service.CustomerService_constructor" autowire="byType"/>
+</beans>

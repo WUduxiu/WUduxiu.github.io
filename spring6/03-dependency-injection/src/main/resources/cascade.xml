@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+                <!-- 不使用级联的写法 -->
+    <bean id="studentBean" class="com.bjpowernode.spring6.bean.Student">
+            <property name="name" value="张三"/>
+            <property name="clazz" ref="clazzBean"/>
+        </bean>
+        <bean id="clazzBean" class="com.bjpowernode.spring6.bean.Clazz">
+            <property name="name" value="高三一班"/>
+        </bean>
+            <!-- 使用级联的写法 -->
+    <!-- 定义studentBean -->
+    <bean id="studentBean2" class="com.bjpowernode.spring6.bean.Student">
+        <!--
+            级联的使用细节
+            1.配置的顺序不能颠倒 要按照下面的顺序
+            2.clazz属性必须提供getter方法
+        -->
+        <property name="name" value="李四"/>
+        <property name="clazz" ref="clazzBean2"/>
+            <!--  这里的clazz.name  实际上就相当于getclazz.name-->
+        <property name="clazz.name" value="高三二班"/>
+    </bean>
+    <!-- 定义clazzBean -->
+    <bean id="clazzBean2" class="com.bjpowernode.spring6.bean.Clazz">
+        <!--  使用了级联就不需要这里面注入属性信息了 -->
+    </bean>
+
+</beans>

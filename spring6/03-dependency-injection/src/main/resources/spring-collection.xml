@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="personBean" class="com.bjpowernode.spring6.bean.Person">
+        <property name="properties">
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/spring6</prop>
+                <prop key="username">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+        <property name="map">
+            <!-- map集合key-value键值对的方式 key不能null不可重复 -->
+            <map>
+                <!-- 如果map里面的键值对存放的不是简单类型
+                    使用  <entry key-ref="" value-ref=""/>
+                 -->
+                <entry key="1" value="110"/>
+                <entry key="2" value="120"/>
+                <entry key="3" value="119"/>
+                <entry key="1" value="12306"/>
+            </map>
+        </property>
+        <property name="list">
+            <!-- list集合 有序可重复 -->
+            <list>
+                <!--如果不是简单类型 就用ref= -->
+                <value>A</value>
+                <value>A</value>
+                <value>B</value>
+                <value>C</value>
+            </list>
+        </property>
+        <property name="set">
+            <!-- set集合 无序不可重复 -->
+            <set>
+                <!--如果不是简单类型 就用ref= -->
+                <value>A</value>
+                <value>A</value>
+                <value>B</value>
+                <value>B</value>
+                <value>C</value>
+            </set>
+        </property>
+    </bean>
+</beans>
