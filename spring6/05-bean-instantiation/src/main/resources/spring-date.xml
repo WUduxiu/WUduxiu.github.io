@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+                <!-- 这种方式只能获取系统当前时间 -->
+    <bean id="nowTime" class="java.util.Date"/>
+
+    <bean id="birthday" class="com.powernode.spring6.factorybean.DateFactoryBean">
+        <constructor-arg index="0" value="2002-1-13"/>
+    </bean>
+
+    <bean id="student" class="com.powernode.spring6.factorybean.Student">
+        <!--<property name="birthday" value="Sun Oct 30 16:48:44 CST 2022"/>-->
+        <property name="birthday" ref="birthday"/>
+    </bean>
+</beans>
