@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- singleton(表示在整个Spring容器中是单例的是独一无二的) + setter实现循环依赖 -->
+    <!--
+        在singleton + setter模式下，为什么循环依赖不会出现问题，Spring的应对方式
+            主要原因是，在这种模式下,Spring对Bean的管理分为清晰的两个阶段
+                第一个阶段：在Spring容器加载的时候，实例化Bean，只要任意一个Bean实例化之后，马上进行"曝光"(不用完成属性的赋值)
+                    “曝光”就是分享自己的Class路径 让别的Bean可以ref赋值
+                第二个阶段：在Bean曝光之后完成属性的赋值(调用set方法)
+             核心解决方案就是：实例化对象和对象属性的赋值分为两个阶段来完成
+         只要scope是singleton的情况下才会进行提前"曝光" 因为在singleton的情况下能保证创建的对象只有一个
+    -->
+         <!-- 配置丈夫Bean -->
+    <bean id="husbandBean" scope="singleton" class="com.powernode.spring6.bean.Husband">
+        <property name="name" value="jack"/>
+        <property name="wife" ref="wifeBean"/>
+    </bean>
+                    <!-- 配置妻子Bean -->
+    <bean id="wifeBean" class="com.powernode.spring6.bean.Wife" scope="singleton">
+        <property name="name" value="lucy"/>
+        <property name="husband" ref="husbandBean"/>
+    </bean>
+</beans>

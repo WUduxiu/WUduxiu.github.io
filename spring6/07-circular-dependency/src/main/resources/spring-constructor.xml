@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!-- 配置wifeBean -->
+    <!--
+        只有当对象创建完成才能进行曝光，但是构造注入要完成构造方法属性的赋值才算是完成了对象的创建
+        所以基于构造依赖下产生的循环依赖是无法解决的
+    -->
+    <bean id="w" class="com.powernode.spring6.bean2.Wife" scope="singleton">
+        <constructor-arg name="name" value="lucy"/>
+        <constructor-arg name="husband" ref="h"/>
+    </bean>
+    <!-- 配置husbandBean -->
+    <bean id="h" class="com.powernode.spring6.bean2.Husband" scope="singleton">
+        <constructor-arg name="name" value="jack"/>
+        <constructor-arg name="wife" ref="w"/>
+    </bean>
+</beans>

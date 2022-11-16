@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+            <!--
+              在prototype + setter模式下的循环依赖，存在问题，会出现异常
+              BeanCurrentlyInCreationException: 当前的Bean正在处于创建中异常
+              只要循环依赖的俩个 scope = prototype时才会出现异常 其中任意一个是singleton就不会出现异常
+            -->
+    <!-- 配置丈夫Bean -->
+    <bean id="husbandBean" class="com.powernode.spring6.bean.Husband" scope="singleton">
+        <property name="name" value="jack"/>
+        <property name="wife" ref="wifeBean"/>
+    </bean>
+    <!-- 配置妻子Bean -->
+    <bean id="wifeBean" class="com.powernode.spring6.bean.Wife" scope="prototype">
+        <property name="name" value="lucy"/>
+        <property name="husband" ref="husbandBean"/>
+    </bean>
+</beans>
