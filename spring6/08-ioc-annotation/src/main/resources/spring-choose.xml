@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+        <!--
+             选择性注解生效
+          第一种解决方案
+                use-default-filters = ”false”
+          如果这个属性是false，表明该包下所有的类上带有声明Bean的注解（@Component、@Controller、@Service、@Repository）失效
+        -->
+<!--        <context:component-scan base-package="com.powernode.spring6.bean2" use-default-filters="false">-->
+<!--                <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--        </context:component-scan>-->
+        <!--
+                第二种解决方案
+                  use-default-filters = ”true”
+         如果这个属性是true，表明该包下所有的类上带有声明Bean的注解（@Component、@Controller、@Service、@Repository）生效
+          use-default-filters="true" 该属性默认值就是true 可以省略
+        -->
+        <context:component-scan base-package="com.powernode.spring6.bean2" >
+                <!--排除掉@Controller 使之不能实例化-->
+                <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        </context:component-scan>
+</beans>
