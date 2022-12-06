@@ -1,0 +1,116 @@
+开发第一个Mybatis程序
+1.resource目录：
+    放在这个目录当中的一般都是资源文件，配置文件
+    直接放在resource目录下的资源，等同于放到了类的跟路径下
+
+2.开发步骤
+    第一步：设置打包方式-jar
+    第二步：引入依赖-com.powernode.mybatis、引入依赖-com.powernode.mybatis
+    第三步：编写mybatis核心配置文件 com.powernode.mybatis-config.xml
+    注意：
+        第一：这个文件名不一定要叫mybatis-config.xml，可以使用其他名字，但是大家都采用这个名字。
+        第二：这个文件存放的位置也不是固定的，可以随意，但是一般情况下都放在类的根路径下--resource文件中
+    第四步：编写XxxxMapper.xml文件
+        在这个配置文件中编写Sql语句
+        这个文件名不是固定的，存放的位置也不是固定的 CarMapper.xml
+        这里暂时存放到类的根路径下--resource文件中
+    第五步：在mybatis-config.xml文件中指定XxxxMapper.xml文件的路径
+        <mapper resource="CarMapper.xml">
+        注意：在mybatis-config.xml配置文件中，resource属性自动从类的根路径下开始查找资源
+    第六步：编写MyBatis程序(使用mybatis的类库，编写mybatis程序，连接数据库，做增删改查)
+        在MyBatis中，负责执行SQL语句的哪个对象叫做什么？
+        SqlSession：专门用来执行SQL语句的，是Java程序和数据库之间的一次会话
+        要想获取SqlSession对象首先需要获取SqlSessionFactory对象，通过SqlSessionFactory工厂来生产SqlSession对象
+        如何获取SqlSessionFactory对象
+        通过SqlSessionFactoryBuilder对象的build方法，来获取一个SqlSessionFactory对象
+
+        mybatis的核心对象
+            SqlSessionFactoryBuilder.build()---->SqlSessionFactory.openSession()--->SqlSession
+
+
+3.从 XML 中构建 SqlSessionFactory
+    从中想到什么？
+    1.在Mybatis中一定是有一个很重要的对象---SqlSessionFactory
+    2.SqlSessionFactory对象的创建需要XML
+    XML是什么？
+        它一定是一个配置文件
+
+4.mybatis中两个主要的配置文件
+    其中一个是：com.powernode.mybatis-config.xml  这是核心配置文件，主要配置连接数据库的信息等(一般情况下就一个)
+    另一个是：Xxxx-Mapper.xml 这个文件主要是抓门用来编写Sql语句的配置文件(一般情况下，一张表一个)
+      例如： t_user 对应一个UserMapper.xml
+            t_student 对应一个StudentMapper.xml
+
+5.小细节
+    mybatis中sql语句的结尾“;” 可以不写
+    Resources.getResourceAsStream()的优点：
+        采用这种方式，从类路径中加载资源，项目的移植性很强，项目从windows移植到linux系统中也不需要修改代码，因为资源文件一直在类路径下
+    也验证了mybatis核心配置文件的名字，不一定是：com.powernode.mybatis-config.xml
+    mybatis核心配置文件存放的路径，也不一定是在类的根路径下，可以放到其他位置，但是为了项目的移植性，健壮性，最好放在类路径下面
+        以后凡是遇到resource这个单词，大部分情况下，这种加载资源的方式就是从类的根路径下开始加载
+         FileInputStream is = new FileInputStream("01-introduction/src/main/resources/com.powernode.mybatis-config.xml");
+         FileInputStream is = new FileInputStream("d:\\com.powernode.mybatis-config.xml");
+         可移植性差： 这种方式创建流的缺点：可能更换系统路径就无效了(例如Linux系统中没有D盘这种说法)
+         还需要修改java程序中的代码，违背了OCP原则
+    还可以使用InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("com.powernode.mybatis-config.xml");
+    获取系统的类加载器  系统类加载器有一个方法getResourceAsStream("") 是从类路径下加载资源
+     Resources.getResourceAsStream()是一个工具类里面的静态方法
+                底层代码实际上还是
+                InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream("com.powernode.mybatis-config.xml");
+                通过系统的类加载器去读取类路径下的资源文件 去创建一个输入流
+
+     CarMapper.xml文件的名称和路径是固定的吗？
+        都不是固定的
+     在mybatis-config.xml配置文件中配置CarMapper.xml的url属性配置
+         <mapper url="file:///d:/CarMapper.xml"/>
+                url属性是从绝对路径中查找文件 并且前面要加上file:///
+     在mybatis-config.xml配置文件中配置CarMapper.xml的resource属性配置
+          <mapper resource="CarMapper.xml"/>
+                resource属性是从类路径当中加载资源的
+
+6.为什么mybatis要手动提交事务？
+    在mybatis-config.xml文件中，可以通过以下的配置进行mybatis的事务管理
+        <transactionManager type="JDBC"/>
+        type属性的值包括两个：
+            JDBC(jdbc)
+            MANAGED(managed)
+            type后面属性值大小写无所谓
+        在mybatis中提供了两种事务管理机制：
+             JDBC事务管理器：
+                在JDBC事务中，没有执行commit.setAutoCommit(false)；那么默认的setAutoCommit就是true
+                mybatis框架自己管理事务，自己采用原生的JDBC代码去管理事务
+                   conn.setAutoCommit(false)
+                   ...业务处理
+                   conn.commit() 手动提交事务
+              MANAGED事务管理器：
+                 mybatis不再负责事务的管理了，事务管理交给其他容器负责，例如spring(spring的事务管理机制)
+        对于当前我们单纯的使用mybatis的情况下，如果  <transactionManager type="MANAGED"/>
+        表示事务这里是没人管理的，表示压根没有开启事务
+
+        如果你编写的代码是下面的代码：
+            SqlSession sqlSession = sqlSessionFactory.openSession(true);
+            表示没有开启事务，因为这种方式压根不会执行：commit.setAutoCommit(false)
+            在JDBC事务中，没有执行commit.setAutoCommit(false)；那么setAutoCommit就是true
+            如果setAutoCommit是true，就表示没有开启事务，是自动提交，只要执行任意一条DML语句就提交
+
+7.关于mybatis常见的集成的日志组件有哪些呢?
+    SLF4J(沙拉风)：沙拉风是一个日志标准，其中有一个框架叫做logback，它实现了沙拉风规范
+    LOG4J
+    LOG4J2
+    上面这三个日志框架都是同一个作者开发
+    STDOUT_LOGGING(标准的日志 mybatis内部已经实现了，不需要引入额外的依赖) 只要开启即可
+    在<configuration>里面配置
+     <settings>
+            <setting name="logImpl" value="STDOUT_LOGGING"/>
+     </settings>
+    这个标签在编写的时候要注意顺序，它应该出现在environments标签之前
+    可以查看dtd文件 查看其约束条件
+
+    集成logback日志框架
+        logback日志框架实现了slf4j标准 (沙拉风是一个日志门面，日志标准)
+        第一步：引入logback的依赖
+
+        第二步：引入logback所必须的xml配置文件
+            这个配置文件的名字必须叫做：logback.xml或者logback-test.xml 不能是其他名字
+            这个配置文件必须放在类的根路径下 不能是其他位置
+            主要配置的是日志输出的相关级别以及日志的具体格式
