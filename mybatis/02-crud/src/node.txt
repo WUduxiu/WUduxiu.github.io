@@ -1,0 +1,142 @@
+使用mybatis完成CRUD
+
+1.什么是CRUD
+    C:Create ----->增
+    R:Retrieve---->查(检索)
+    U:Update------>改
+    D:Delete------>删
+
+2.insert
+    <insert id="insertCar">
+        <!-- 这里编写Sql语句 -->
+         insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+         values(null,"1003","丰田霸道",30.0,'2000-10-11',"燃油车")
+     </insert>
+    这种写法的问题？
+        传入的值 显然已经写死在配置文件里面了
+        这个在实际开发中是不存在的
+        一定是前端的form表单提交过来的数据，然后将值传给sql语句
+
+    例如：在JDBC中的写法
+        String sql = "insert into t_car(id,car_num,brand,guide_price,produce_time,car_type),values(null,?,?,?,?,?)"
+        ps.setString(1,"1003")      set传入的值的类型(第几个问号,要传的类型的值)
+        ps.setString(2,"丰田霸道")
+        ......
+
+        在JDBC当中采用的占位符是 ? 在mybatis中使用的是#{}
+        在mybatis中不能用 ? 当作占位符，必须使用#{}来代替JDBC中的 ?
+        #{} 和 JDBC 当中的 ? 是等效的
+
+        Map<String,Object> map  = new HashMap<>() 创建一个集合去存放数据
+            map.put("k1","1111");
+            map.put("k2","比亚迪汉");
+            map.put("k3",10.0);
+            map.put("k4","2022-11-11");
+            map.put("k5","电车");
+
+            insert into t_car(id,car_num,brand,guide_price,produce_time,car_type) values(null,#{k1},#{k2},#{k3},#{k4},#{k5});
+        在CarMapper.xml文件中 insert语句里面  values(#{})
+        这个#{}占位符里面写什么？  写map集合的key，如果key不存在，获取的值就是null 因为调用的map.get(key)
+        一般map集合的key起名的时候要  “见名知意”
+             map.put("carNum", "1112");
+             map.put("brand", "比亚迪秦");
+             map.put("guidePrice", "15.0");
+             map.put("produceTime", "2022-1-1");
+             map.put("carType", "新能源");
+             insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+             values(null,#{carNum},#{brand},#{guidePrice},#{produceTime},#{carType})
+
+        使用pojo类去封装数据
+            Car car = new Car(null,"3333","比亚迪秦",30.0,"2022-11-10","新能源");
+
+            insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+            values(null,#{carNum},#{brand},#{guidePrice},#{produceTime},#{carType})
+        如果在#{}中写类的属性值写错了 就会报错
+        There is no getter for property named 'carNum1' in 'class com.powernode.com.powernode.mybatis.pojo.Car'
+        说明mybatis去找Car类中的getNum1()去了 结果没找到 就报错了
+        所以#{}这里面从严格意义上来说 里面应该填写的是getNum()方法 去掉get 并且首字母变小写 就得到了---->num
+        例如 getUsername()-->#{username}
+            getEmail()----->#{email}
+            getNum()---->#{num}
+        也就是说mybatis在底层给sql语句中的 ? 传值的时候，怎么获取值的？
+            调用了pojo对象的get方法  例如：car.getCarNum()  car.getBrand()  car.getGuidePrice()
+3.delete
+    需求：根据id删除数据
+        将id=15的数据删除
+    实现：
+        int count = sqlSession.delete("deleteById",15);
+        <delete id="deleteById">
+            delete  from t_car where id = #{id}
+        </delete>
+    注意：如果占位符只有一个，那么#{} 里面可以随意写 但最好可以“见名知意”
+
+4.update
+    需求：根据id修改某条记录
+        将id=1的数据进行修改
+    实现：
+        //准备数据
+           Car car = new Car(1L, "1000", "BWM", 50.0, "2022-11-8", "燃油车");
+        //执行sql语句
+           int count = sqlSession.update("updateById", car);
+        <update id="updateById">
+            update t_car set car_num=#{carNum},brand=#{brand},guide_price=#{guidePrice},
+            produce_time=#{produceTime},car_type=#{carType} where id = #{id}
+        </update>
+
+5.select(查一个，根据主键查询的话，返回的结果一定是一个)
+    需求：根据id查找数据
+        查找id为1的信息
+    实现：
+        //执行sql
+           Car car = sqlSession.selectOne("selectById", 1);
+           System.out.println(car);
+            <!-- 查询语句要指名返回到的查询结果类型(指定要封装的类型) -->
+           <select id="selectById" resultType="com.powernode.com.powernode.mybatis.pojo.Car">
+               select * from t_car where id = #{id}
+           </select>
+    需要注意的是：select标签中的 resultType属性 是告诉mybatis，查询的结果集应该要封装成什么类型的java对象
+                resultType 属性里面的通常写的是全限定类名
+           输出结果不对劲：
+         Car{id=1, carNUm='null', brand='BWM', guidePrice=null, produceTime='null', carType='null'}
+    为什么只有 id和brand的有值，其他的数据为null？
+        因为只有id和brand在 Car实体类中 和 在数据库t_car 这俩者的字段匹配上了
+        id--id    brand--brand
+        mysql查询结果的列名和Car类中的属性名对应不上
+        carNum--car_num,
+        guidePrice--guide_price,
+        produceTime--produce_time,
+        carType--car_type
+    如何解决？
+        select语句在查询的时候，查询结果集的列名是可以使用as关键字起别名的
+        select
+            id,car_num as carNum,brand,guide_price as guidePrice,
+            produce_time as produceTime,car_type as carType
+        from
+            t_car
+        where
+            id = #{id}
+
+6.select(查所有)
+注意：resultType还是要指定封装的结果集的类型，不是指定List类型，是指定List集合中元素的类型
+    因为selectList方法：mybatis通过这个方法就可以得知你需要一个List集合，它会自动给你返回一个List集合
+    需求：查询所有记录
+    实现：
+        SqlSession sqlSession = SqlSessionUtil.openSession();
+          //执行sql
+        List<Object> cars = sqlSession.selectList("selectAll");
+
+        <select id="selectAll" resultType="com.powernode.com.powernode.mybatis.pojo.Car">
+         select
+            id,car_num as carNum,brand,guide_price as guidePrice,produce_time as produceTime,car_type as carType
+         from
+            t_car
+        </select>
+
+7.在sql mapper.xml文件当中有一个namespace属性，这个属性是用来指定命名空间的，用来防止id重复
+    怎么使用？
+        在java程序中的使用方法
+           此时 <mapper namespace="car"> . <select id="selectById"
+           即 namespace.id
+           List<Car> cars = sqlSession.selectList("car.selectAll");
+   实际上，本质上，mybatis中的sqlId的完整写法：
+           namespace.id

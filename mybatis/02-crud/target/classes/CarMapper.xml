@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace先随意写⼀个-->
+<mapper namespace="car">
+    <!-- 增 -->
+    <!--id属性指定唯一标识，这个id就代表了这个Sql语句-->
+    <insert id="insertCar">
+        <!-- 这里编写Sql语句 -->
+        <!-- vaules里面  #{}写的是Map集合里面的key此时 -->
+        <!--
+         如果values里面#{}的key的值写错了 会传一个null
+         因为底层调的是 map.get("key") 去得到value 此时因为key不存在 所有会返回一个null  并传入到数据库中
+         Map集合的key 取名不能随便取  要见名知意  下面的写法代码的可读性太差了
+          insert into t_car(id,car_num,brand,guide_price,produce_time,car_type) values(null,#{k1},#{k2},#{k3},#{k4},#{k5});
+         -->
+        <!--
+        使用Map封装数据
+        insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+        values(null,#{carNum},#{brand},#{guidePrice},#{produceTime},#{carType})
+        -->
+
+        <!-- 使用pojo类来封装数据 -->
+        insert into t_car(id,car_num,brand,guide_price,produce_time,car_type)
+        values(null,#{carNum},#{brand},#{guidePrice},#{produceTime},#{carType})
+    </insert>
+
+    <delete id="deleteById">
+        delete  from t_car where id = #{id}
+    </delete>
+
+    <update id="updateById">
+        update t_car set car_num=#{carNum},brand=#{brand},guide_price=#{guidePrice},
+        produce_time=#{produceTime},car_type=#{carType} where id = #{id}
+    </update>
+
+    <!-- 
+        查询语句要指名返回到的查询结果类型(指定要封装的类型)
+        查询单个
+     -->
+    <select id="selectById" resultType="com.powernode.mybatis.pojo.Car">
+        <!--
+            select * from t_car where id = #{id}
+            这样写会使得sql查询到的结果集的列名和Car类中的属性名对应不上
+        -->
+    select
+        id,car_num as carNum,brand,guide_price as guidePrice,produce_time as produceTime,car_type as carType
+     from
+        t_car
+    where id =
+         #{id}
+    </select>
+
+    <!--
+        查询多个
+        resultType里面填的是查询结果List集合里面的元素类型所以还是Car类
+    -->
+    <select id="selectAll" resultType="com.powernode.mybatis.pojo.Car">
+        select
+            id,car_num as carNum,brand,guide_price as guidePrice,produce_time as produceTime,car_type as carType
+        from
+            t_car
+    </select>
+    
+</mapper>
