@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+        <!--
+         java.util.Properties类是一个Map属性的集合  它的key和value都是String类型
+         这个文件一般在类的根路径下定义
+         -->
+   <!-- <properties>
+        <property name="jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbc.url" value="jdbc:mysql://localhost:3306/mybatis2"/>
+        <property name="jdbc.username" value="root"/>
+        <property name="jdbc.password" value="wutianzi123."/>
+    </properties>-->
+        <!-- resource表明是从类的根路径下来查找资源的 -->
+    <properties resource="jdbc.properties"/>
+        <!-- url表示从绝对路径中查找资源
+        格式是  file:///
+        -->
+    <!--<properties url="file:///D:/IdeaWorkspace/Mybatis/03-configuration/src/main/resources/jdbc.properties"/>-->
+    <!-- 开启mybatis对标准文件的实现 -->
+    <!--<settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>-->
+
+    <!--
+    default表示默认使用的环境
+    当你使用mybatis创建SqlSessionFactory对象的时候，没有指定环境的话，默认使用哪个环境
+    现在表示，如果没有指定环境，默认使用的环境就是mybatisDB，即默认连接mybatis数据库
+    -->
+    <environments default="mybatis2DB">
+            <!--
+             一般情况下，一个环境对应一个数据库
+            一个环境environment (一个数据库)对应一个SqlSessionFactory对象
+             其中的一个环境，id=“development”
+             连接的数据库是mybatis
+             -->
+        <environment id="mybatisDB">
+            <transactionManager type="JDBC"/>
+            <!--
+                <transactionManager 标签：
+                    1.作用：配置事务管理器，指定mybatis具体使用什么方法方式去管理事务
+                    2.type属性有俩个值：
+                        第一个:JDBC 使用原生的JDBC来管理事务
+                            conn.setAutoCommit(false)//设置自动提交关闭
+                            ....
+                            conn.commit()
+                        第二个：MANAGED：mybatis不再负责事务的管理，将事务的管理交给其他JEE(JavaEE)容器来管理 例如spring框架
+                   3.里面的两个值 大小无所谓
+                   4.在mybatis中提供了一个事务管理器接口，Transaction
+                        该接口下有俩个实现类
+                            JDBCTransaction
+                            ManagedTransaction
+                     如果type=JDBC 底层就实例化JDBCTransaction
+                     如果type=MANAGED 底层就实例化ManagedTransaction
+            -->
+            <dataSource type="POOLED">
+                <!--
+                    dataSource配置
+                        1.dataSource被称为数据源
+                        2.dataSource的作用是什么？
+                            为程序提供Connection对象，但凡是给程序提供Connection对象的都叫做数据源
+                        3.数据源实际上是一套规范 JDK中有这套规范：javax.sql.DataSource(这个数据源的规范、这套接口的规范实际上是JDK规定的)
+                        4.我们也可以编写数据源组件，只要实现了javax.sql.DataSource接口就行了，实现接口中的所有方法，这样就有了自己的数据源
+                        比如你可以写一个属于自己的数据库连接池(数据库连接池是提供连接对象的，所以数据库连接池就是一个数据源)
+                        5.常见的数据源组件有哪些？(常见的数据库连接池有哪些？)
+                            阿里巴巴的德鲁伊连接池：druid
+                            c3p0
+                            dbcp
+                            ....
+                        6.type属性用来指定数据源的类型，就是指定具体使用什么方式来获取Connection对象：
+                            type属性有三个值 必须是三选一
+                            type="[UNPOOLED|POOLED|JNDI]
+                            UNPOOLED:不使用数据库连接池技术，每一次请求过后，都是创建新的Connection对象
+                            POOLED：使用mybatis自己实现的数据库连接池
+                            JNDI：集成第三方的数据库连接池
+
+                            JNDI是一套规范，谁实现了这套规范？大部分的web容器都实现了JNDI规范
+                                例如：Tomcat、Jetty、WebLogic、WebSphere这些服务器(容器)都实现了JNDI规范。
+                            JNDI是：java命名目录接口。Tomcat服务器实现了这个规范
+
+                -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="wutianzi123."/>
+            </dataSource>
+        </environment>
+
+            <!-- 这是mybatis的另一个环境，连接的数据库是另一个数据库mybatis2-->
+        <environment id="mybatis2DB">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+                <!--
+                    正常使用连接池，池中的很多参数是需要设置的，设置合适的参数可以让连接池发挥的更好，事半功倍的效果
+                    具体的连接池当中的属性如何配置呢？ 需要反复的根据当前业务情况进行测试
+                    例如：poolMaximumActiveConnections这个属性
+                    配置的就是当前连接池最多的正在使用的连接的对象数量上限，最多有多少个连接可以活动 默认值是10
+                 -->
+                <property name="poolMaximumActiveConnections" value="10"/>
+                    <!-- 每隔2s(2000毫秒) 打印日志，并尝试获取连接 -->
+                <property name="poolTimeToWait" value="2000"/>
+                    <!-- 强行让某个连接空闲，并且尝试获取连接对象  时间为10s -->
+                <property name="poolMaximumCheckoutTime" value="10000"/>
+                    <!-- 连接池中最多存在的空闲连接
+                    这里设置成5个 当有第6个连接要空闲下来时，会真正意义上的被关闭，这样可以节省资源
+                    -->
+                <property name="poolMaximumIdleConnections" value="5"/>
+            </dataSource>
+        </environment>
+            <!-- -->
+    </environments>
+    <mappers>
+        <!--sql映射⽂件创建好之后，需要将该⽂件路径配置到这⾥-->
+        <!--resource属性自动会从类的跟路径下开始查找资源(resource文件)-->
+        <mapper resource="CarMapper.xml"/>
+        <!--
+        <mapper url="file:///d:/CarMapper.xml"/>
+        url属性是从绝对路径中查找文件 并且前面要加上file:///
+        -->
+    </mappers>
+</configuration>
